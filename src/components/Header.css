@@ -1,0 +1,9 @@
+.header{
+  display: flex;
+  flex-wrap: nowrap;
+  height: 50px;
+}
+.header-left{
+  width: 600px;
+  margin: 0 20px 70px;
+}

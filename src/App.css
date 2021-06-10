@@ -1,0 +1,16 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+html{
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app{
+  width: 630px;
+  border: 1px solid #d9d9d9;
+  padding: 30px;
+}
