@@ -1,10 +1,13 @@
 import { useContext } from 'react';
 import Store from '../store'
 import './BodyList.css'
-import { Input, Button } from 'antd';
+import { Input, Button, Popconfirm, message } from 'antd';
 
 function List(props) {
   const dispatch = useContext(Store).dispatch;
+  function confirm() {
+     message.info('删除成功');
+  }
   return (
     <div>
       <h3>{props.title}</h3>
@@ -17,7 +20,7 @@ function List(props) {
               <div>{item.taskname}</div>
               <div>{item.isDone ? '已完成' : '待办'}</div>
               <div>
-                <Button danger style={{ 'marginRight': '13px' }} onClick={() => dispatch({ type: 'DELETE_TODO', taskname: item.taskname })}>删除</Button>
+                   <Button danger style={{ 'marginRight': '13px' }} onClick={() => dispatch({ type: 'DELETE_TODO', taskname: item.taskname })}>删除</Button>
                 { !item.isDone && <Button type="primary" onClick={() => dispatch({ type: 'COMPLETE_TODO', taskname: item.taskname })}>完成</Button>}
               </div>
             </li>)

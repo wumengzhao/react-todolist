@@ -34,7 +34,7 @@ function reducer(state, action){
       return [...state];
     case "DELETE_SELECTED":
       state = state.filter((item) => { return !item.checked });
-      return [...state];
+      return state;
     default:
       return state;
   } 
