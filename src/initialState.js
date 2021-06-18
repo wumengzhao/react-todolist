@@ -1,6 +1,4 @@
-import React from 'react'
-
-const Store = React.createContext([
+const initialState = [
   {
     taskname: 'studying',
     isDone: true,
@@ -16,6 +14,6 @@ const Store = React.createContext([
     isDone: true,
     checked: false
   }
-]);
+];
 
-export default Store;
+export default initialState;

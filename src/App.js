@@ -1,32 +1,37 @@
-import BodyList from './components/BodyList'
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import BodyList from './components/BodyList/BodyList'
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import './App.css';
-import { useContext, useReducer, useEffect } from 'react';
-import reducer from './reducer';
-import Store from './store';
+import { useEffect } from 'react';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers';
+import initialState from './initialState';
 
 // 从本地缓存中获取state，这样可以保存状态
-function usePersistedContext(store, key) {
+function usePersistedState(state, key) {
   const persistedContext = localStorage.getItem(key);
-  return persistedContext ? JSON.parse(persistedContext) : store;
+  return persistedContext ? JSON.parse(persistedContext) : state;
 }
 // 每次调用dispatch更新state都会更新本地存储
-function usePersistedReducer([state, dispatch], key = "state"){
-  useEffect(() => localStorage.setItem(key, JSON.stringify(state)), [state]);
-  return [state, dispatch];
+function usePersistedReducer(store, key = "state"){
+  useEffect(() => localStorage.setItem(key, JSON.stringify(store.getState().todo.todolist)));
+  return store;
 }
 
 function App() {
-  const store = usePersistedContext(useContext(Store), 'state');
-  const [state, dispatch] = usePersistedReducer(useReducer(reducer, store), 'state');
+  const state = usePersistedState(initialState, 'state');
+  const ns = { todo: { todolist: state }, my: state};
+  console.log('ns', ns);
+  const store = usePersistedReducer(createStore(reducer,ns), 'state');
+  console.log('store', store.getState());
   return (
     <div className="app">
-      <Store.Provider value={{ state, dispatch }}>
+      <Provider store={ store }>
         <Header />
         <BodyList />
         <Footer />
-      </Store.Provider>
+      </Provider>
     </div>
   );
 }

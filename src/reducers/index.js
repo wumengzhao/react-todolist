@@ -1,10 +1,10 @@
 import todo from './todo';
-import todoChecked from './todoChecked'
+import my from './myReducer'
 import { combineReducers } from 'redux';
 
 const reducers = combineReducers({
   todo,
-  todoChecked
+  my
 });
 
 export default reducers;
