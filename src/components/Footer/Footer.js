@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { selectAll, selectAllCancel, deleteSelected} from '../../actions/todoAction'
+import PropTypes from 'prop-types';
 
 function Footer(props) {
   let count = 0;
@@ -15,9 +16,17 @@ function Footer(props) {
     </div>
   );
 }
+// 用于类型检查
+Footer.propTypes = {
+  selectAll: PropTypes.func.isRequired,
+  selectAllCancel: PropTypes.func.isRequired,
+  deleteSelected: PropTypes.func.isRequired
+}
+
 const mapStateToProps = (state) => ({
   todolist: state.todo.todolist
 })
+
 const mapDispatchToProps = (dispatch) => ({
   selectAll: () => dispatch(selectAll()),
   selectAllCancel: () => dispatch(selectAllCancel()),

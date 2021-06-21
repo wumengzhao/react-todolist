@@ -15,6 +15,7 @@ function usePersistedState(state, key) {
 }
 // 每次调用dispatch更新state都会更新本地存储
 function usePersistedReducer(store, key = "state"){
+  console.log('reducer 更新');
   useEffect(() => localStorage.setItem(key, JSON.stringify(store.getState().todo.todolist)));
   return store;
 }

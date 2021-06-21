@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { connect } from 'react-redux'
 import { addTodo} from '../../actions/todoAction'
 import './Header.css'
+import PropTypes from 'prop-types';
 
 function Header(props) {
   // 绑定输入框的值
@@ -21,6 +22,11 @@ function Header(props) {
     </div>
   );
 }
+// 用于类型检查
+Header.propTypes = {
+  addTodo: PropTypes.func.isRequired
+}
+
 const mapDispatchToProps = (dispatch) => ({
   addTodo: (taskname) => dispatch(addTodo(taskname))
 });

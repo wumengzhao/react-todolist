@@ -18,7 +18,7 @@ export const selectAllCancel = (() => ({
 }));
 export const selectOne = ((taskname) => ({
   type: 'SELECT_ONE',
-  taskname: taskname
+  taskname
 }));
 export const deleteSelected = (() => ({
   type: 'DELETE_SELECTED'
