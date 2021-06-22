@@ -13,7 +13,7 @@ function usePersistedState(state, key) {
   const persistedContext = localStorage.getItem(key);
   return persistedContext ? JSON.parse(persistedContext) : state;
 }
-// 每次调用dispatch更新state都会更新本地存储
+// 每次调用dispatch更新state都会更新本地存储,但这个里面不会被执行到
 function usePersistedReducer(store, key = "state"){
   console.log('reducer 更新');
   useEffect(() => localStorage.setItem(key, JSON.stringify(store.getState().todo.todolist)));
@@ -24,6 +24,7 @@ function App() {
   const state = usePersistedState(initialState, 'state');
   const ns = { todo: { todolist: state }, my: state};
   console.log('ns', ns);
+  // 每次不更新父组件，只更新子组件，此处不会重新执行
   const store = usePersistedReducer(createStore(reducer,ns), 'state');
   console.log('store', store.getState());
   return (
