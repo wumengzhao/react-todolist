@@ -36,13 +36,13 @@ ListItem.propTypes = {
     deleteTodo: PropTypes.func.isRequired,
     completeTodo: PropTypes.func.isRequired
 }
-
+// 将store state映射为组件的属性，第二个参数是组件本身自己的属性，在此可以进行处理然后再传入
 const mapStateToProps = (state, ownprops) => ({
   taskname: ownprops.item.taskname,
   isDone: ownprops.item.isDone,
   checked: ownprops.item.checked
 });
-
+// 将store dispatch映射成组件的属性
 const mapDispatchToProps = (dispatch) => ({
   selectOne: (taskname) => dispatch(selectOne(taskname)),
   deleteTodo: (taskname) => dispatch(deleteTodo(taskname)) ,

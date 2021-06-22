@@ -24,6 +24,7 @@ function App() {
   const state = usePersistedState(initialState, 'state');
   const ns = { todo: { todolist: state }, my: state};
   console.log('ns', ns);
+  // 调用diapstch父组件不会重新执行，所以这个地方并不能更新本地存储
   const store = usePersistedReducer(createStore(reducer,ns), 'state');
   console.log('store', store.getState());
   return (
