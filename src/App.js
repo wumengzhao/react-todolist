@@ -7,26 +7,26 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers';
 import initialState from './initialState';
+import { getAllAPI } from './api/todo'
+import { setTodolist } from './actions/todoAction'
 
 // 从本地缓存中获取state，这样可以保存状态
 function usePersistedState(state, key) {
   const persistedContext = localStorage.getItem(key);
   return persistedContext ? JSON.parse(persistedContext) : state;
 }
-// 每次调用dispatch更新state都会更新本地存储
-function usePersistedReducer(store, key = "state"){
-  console.log('reducer 更新');
-  useEffect(() => localStorage.setItem(key, JSON.stringify(store.getState().todo.todolist)));
-  return store;
-}
 
 function App() {
   const state = usePersistedState(initialState, 'state');
   const ns = { todo: { todolist: state }, my: state};
-  console.log('ns', ns);
   // 调用diapstch父组件不会重新执行，所以这个地方并不能更新本地存储
-  const store = usePersistedReducer(createStore(reducer,ns), 'state');
+  const store = createStore(reducer, ns);
   console.log('store', store.getState());
+  useEffect(()=>{ getAllAPI().then(
+    (res)=>{
+      store.dispatch(setTodolist(res.data));
+    });
+  });
   return (
     <div className="app">
       <Provider store={ store }>

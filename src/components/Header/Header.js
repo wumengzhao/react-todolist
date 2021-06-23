@@ -1,9 +1,10 @@
-import { Button, Input } from 'antd';
+import { Button, Input, message } from 'antd';
 import { useState } from 'react';
 import { connect } from 'react-redux'
 import { addTodo} from '../../actions/todoAction'
 import './Header.css'
 import PropTypes from 'prop-types';
+import { addOneAPI } from '../../api/todo'
 
 function Header(props) {
   // 绑定输入框的值
@@ -12,8 +13,14 @@ function Header(props) {
     setVal(e.target.value);
   }
   function handleAddItem() {
-    props.addTodo(val);
-    setVal('');
+    addOneAPI(val).then((res)=>{
+      console.log('addOne res', res);
+      props.addTodo(val);
+      setVal('');
+      message.success(res.msg);
+    }).catch((err) => {
+      message.err(err);
+    })
   }
   return (
     <div className="header">

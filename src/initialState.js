@@ -1,19 +1,21 @@
-const initialState = [
+let initialState = [
   {
-    taskname: 'studying',
-    isDone: true,
+    task_id: 1,
+    task_name: 'studying',
+    is_done: true,
     checked: false
   },
   {
-    taskname: 'swimming',
-    isDone: false,
+    task_id: 2,
+    task_name: 'swimming',
+    is_done: false,
     checked: false
   },
   {
-    taskname: 'writing',
-    isDone: true,
+    task_id: 3,
+    task_name: 'writing',
+    is_done: true,
     checked: false
   }
 ];
-
 export default initialState;

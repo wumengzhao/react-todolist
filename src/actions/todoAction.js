@@ -1,14 +1,18 @@
+export const setTodolist = ((todolist) => ({
+  type: 'SET_TODOLIST',
+  todolist: todolist
+}) );
 export const addTodo = ((taskname) => ({
   type: 'ADD_TODO',
   taskname
 }) );
-export const deleteTodo = ((taskname) => ({
+export const deleteTodo = ((id) => ({
   type: 'DELETE_TODO',
-  taskname
+  id
 }) );
-export const completeTodo = ((taskname) => ({
+export const completeTodo = ((id) => ({
   type: 'COMPLETE_TODO',
-  taskname
+  id
 }) );
 export const selectAll = (() => ({
   type: 'SELECT_ALL'
@@ -16,9 +20,9 @@ export const selectAll = (() => ({
 export const selectAllCancel = (() => ({
   type: 'SELECT_ALL_CANCEL'
 }));
-export const selectOne = ((taskname) => ({
+export const selectOne = ((id) => ({
   type: 'SELECT_ONE',
-  taskname
+  id
 }));
 export const deleteSelected = (() => ({
   type: 'DELETE_SELECTED'
