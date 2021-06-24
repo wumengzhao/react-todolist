@@ -1,3 +1,5 @@
+import { getAllAPI } from '../api/todo';
+
 export const setTodolist = ((todolist) => ({
   type: 'SET_TODOLIST',
   todolist,
@@ -27,3 +29,14 @@ export const selectOne = ((id) => ({
 export const deleteSelected = (() => ({
   type: 'DELETE_SELECTED',
 }));
+
+export function getTodolistByAxios() {
+  return function (dispatch) {
+    getAllAPI().then((res) => {
+      console.log('res.data', res.data);
+      dispatch(setTodolist(res.data));
+    }).catch((err) => {
+      console.log('err', err);
+    });
+  };
+}
