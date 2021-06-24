@@ -4,7 +4,7 @@ function myReducer(state, action) {
       console.log('MY_TODO');
       return state[0];
     default:
-      return {...state};
+      return { ...state };
   }
 }
 export default myReducer;

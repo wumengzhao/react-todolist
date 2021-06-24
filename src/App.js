@@ -3,9 +3,9 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { setTodolist } from './actions/todoAction';
 import { getAllAPI } from './api/todo';
-import Header from './components/Header/Header';
-import BodyList from './components/BodyList/BodyList';
-import Footer from './components/Footer/Footer';
+import AddTodo from './container/AddTodo';
+import Todolist from './container/Todolist';
+import Footer from './container/Footer';
 import reducer from './reducers';
 import initialState from './initialState';
 import './App.css';
@@ -30,10 +30,9 @@ function App() {
   return (
     <div className="app">
       <Provider store={store}>
-        <Header />
-        <BodyList />
+        <AddTodo />
+        <Todolist />
         <Footer />
-        <a />
       </Provider>
     </div>
   );

@@ -1,10 +1,10 @@
-import todo from './todo';
-import my from './myReducer'
 import { combineReducers } from 'redux';
+import todo from './todo';
+import my from './myReducer';
 
 const reducers = combineReducers({
   todo,
-  my
+  my,
 });
 
 export default reducers;
