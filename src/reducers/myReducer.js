@@ -1,4 +1,4 @@
-function myReducer(state, action) {
+function myReducer(state = null, action) {
   switch (action.type) {
     case "MY_TODO":
       console.log('MY_TODO');
