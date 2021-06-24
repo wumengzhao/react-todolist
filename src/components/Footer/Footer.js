@@ -2,25 +2,25 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { selectAllAPI, cancelSelectAllAPI, deleteSelectedAPI } from '../../api/todo';
 
-const Footer = ({ todolist, selectAllClick, selectAllCancelClick, deleteSelectedClick }) => {
+const Footer = ({ todolist, getTodolist }) => {
   let count = 0;
   todolist.forEach((item) => { if (item.checked) count += 1; });
   function selectAllItems() {
     selectAllAPI().then((res) => {
       console.log('selectAllAPI', res);
-      selectAllClick();
+      getTodolist();
     });
   }
   function selectAllItemsCancel() {
     cancelSelectAllAPI().then((res) => {
       console.log('cancelSelectAllAPI', res);
-      selectAllCancelClick();
+      getTodolist();
     });
   }
   function deleteSelectedItems() {
     deleteSelectedAPI().then((res) => {
       console.log('deleteSelectedAPI', res);
-      deleteSelectedClick();
+      getTodolist();
     });
   }
   return (
@@ -45,9 +45,7 @@ const Footer = ({ todolist, selectAllClick, selectAllCancelClick, deleteSelected
 };
 // 用于类型检查
 Footer.propTypes = {
-  selectAllClick: PropTypes.func.isRequired,
-  selectAllCancelClick: PropTypes.func.isRequired,
-  deleteSelectedClick: PropTypes.func.isRequired,
+  getTodolist: PropTypes.func.isRequired,
 };
 
 export default Footer;

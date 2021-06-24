@@ -1,4 +1,4 @@
-function todo(state = null, action) {
+function todo(state = { todolist: [] }, action) {
   // 有多个reducer时，这个地方的state就是自己对应的state
   console.log('reducer更新-----------------------');
   switch (action.type) {

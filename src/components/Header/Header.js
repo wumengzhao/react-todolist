@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import './Header.css';
 import { addOneAPI } from '../../api/todo';
 
-const Header = ({ addTodoClick }) => {
+const Header = ({ getTodolist }) => {
   // 绑定输入框的值
   const [val, setVal] = useState('');
   function handleChange(e) {
@@ -13,7 +13,7 @@ const Header = ({ addTodoClick }) => {
   function handleAddItem() {
     addOneAPI(val).then((res) => {
       console.log('addOne res', res);
-      addTodoClick(val);
+      getTodolist();
       setVal('');
       message.success(res.msg);
     }).catch((err) => {
@@ -29,7 +29,7 @@ const Header = ({ addTodoClick }) => {
 };
 // 用于类型检查
 Header.propTypes = {
-  addTodoClick: PropTypes.func.isRequired,
+  getTodolist: PropTypes.func.isRequired,
 };
 
 export default Header;

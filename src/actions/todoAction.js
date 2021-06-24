@@ -29,9 +29,9 @@ export const selectOne = ((id) => ({
 export const deleteSelected = (() => ({
   type: 'DELETE_SELECTED',
 }));
-
+// 异步action
 export function getTodolistByAxios() {
-  return function (dispatch) {
+  return (dispatch) => {
     getAllAPI().then((res) => {
       console.log('res.data', res.data);
       dispatch(setTodolist(res.data));

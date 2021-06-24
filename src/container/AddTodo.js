@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { addTodo } from '../actions/todoAction';
+import { getTodolistByAxios } from '../actions/todoAction';
 import Header from '../components/Header/Header';
 
 const mapDispatchToProps = (dispatch) => ({
-  addTodoClick: (taskname) => dispatch(addTodo(taskname)),
+  getTodolist: () => dispatch(getTodolistByAxios()),
 });
 
 const AddTodo = connect(null, mapDispatchToProps)(Header);
