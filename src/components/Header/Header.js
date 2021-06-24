@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { Button, Input, message } from 'antd';
 import React, { useState } from 'react';
 import './Header.css';
-import { addOneAPI } from '../../api/todo';
+import { addOneAPI, getAllAPI } from '../../api/todo';
 
-const Header = ({ addTodoClick }) => {
+const Header = ({ setTodolist }) => {
   // 绑定输入框的值
   const [val, setVal] = useState('');
   function handleChange(e) {
@@ -12,12 +12,13 @@ const Header = ({ addTodoClick }) => {
   }
   function handleAddItem() {
     addOneAPI(val).then((res) => {
-      console.log('addOne res', res);
-      addTodoClick(val);
+      getAllAPI().then((response) => {
+        setTodolist(response.data);
+      });
       setVal('');
       message.success(res.msg);
     }).catch((err) => {
-      message.err(err);
+      message.error(err);
     });
   }
   return (
@@ -29,7 +30,7 @@ const Header = ({ addTodoClick }) => {
 };
 // 用于类型检查
 Header.propTypes = {
-  addTodoClick: PropTypes.func.isRequired,
+  setTodolist: PropTypes.func.isRequired,
 };
 
 export default Header;

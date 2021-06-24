@@ -40,7 +40,7 @@ function ListItem({ id, taskname, isDone, checked, selectOneClick, deleteTodoCli
   }
   return (
     <li>
-      <div>{id}</div>
+      <div style={{ textAlign: 'center' }}>{id}</div>
       <div onClick={() => selectOneItem(id, checked)}><Input type="checkbox" checked={checked} /></div>
       <div>{ taskname }</div>
       <div>{ isDone ? '已完成' : '待办' }</div>

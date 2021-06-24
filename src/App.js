@@ -11,7 +11,7 @@ import initialState from './initialState';
 import './App.css';
 
 function App() {
-  const ns = { todo: { todolist: initialState }, my: state };
+  const ns = { todo: { todolist: initialState }, my: initialState };
   // 调用diapstch父组件不会重新执行，所以这个地方并不能更新本地存储
   const store = createStore(reducer, ns);
   console.log('store', store.getState());
